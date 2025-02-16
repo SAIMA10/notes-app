@@ -1,29 +1,26 @@
-import React, { useState } from "react";
-import "../signup/index.css";
 import axios from "axios";
-import { Link, useNavigate } from "react-router-dom";
+import { useState } from "react";
+import { useNavigate } from "react-router-dom";
 import { useAuth } from "../../context/ContextProvider";
 
-const SignUpForm = () => {
-  const [name, setName] = useState("");
+const Login = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
 
-  const { login } = useAuth();
-
   const navigate = useNavigate();
+
+  const { login } = useAuth();
 
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
       const response = await axios.post(
-        "http://localhost:5000/api/auth/register",
-        { name, email, password }
+        "http://localhost:5000/api/auth/login",
+        { email, password }
       );
-
       if (response.data.success) {
+        login(response.data.user);
         localStorage.setItem("token", response.data.token);
-        login({ name, email });
         navigate("/");
       }
     } catch (error) {
@@ -34,17 +31,8 @@ const SignUpForm = () => {
   return (
     <div className="container">
       <div className="card">
-        <h2 className="title">Signup</h2>
+        <h2 className="title">Login</h2>
         <form onSubmit={handleSubmit}>
-          <div className="div-container">
-            <label className="label-field">Name</label>
-            <input
-              type="text"
-              onChange={(e) => setName(e.target.value)}
-              className="input-field"
-              placeholder="Enter Username"
-            />
-          </div>
           <div className="div-container">
             <label className="label-field">Email</label>
             <input
@@ -63,15 +51,12 @@ const SignUpForm = () => {
               placeholder="Enter Password"
             />
           </div>
-          <button className="signup-btn">Signup</button>
-          {/* <p className="login-text">
-            Already have an account?{" "}
-            <a className="login-link" href="/login">
-              Login
-            </a>
-          </p> */}
+          <button className="signup-btn">Login</button>
           <p className="login-text">
-            Already have an account? <Link to="/login">Login</Link>
+            Don't have an account? Create one{" "}
+            <a className="login-link" href="/signup">
+              SignUp
+            </a>
           </p>
         </form>
       </div>
@@ -79,4 +64,4 @@ const SignUpForm = () => {
   );
 };
 
-export default SignUpForm;
+export default Login;

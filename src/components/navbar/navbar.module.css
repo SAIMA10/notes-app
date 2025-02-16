@@ -1,0 +1,70 @@
+/* Scoped styles for Navbar */
+.navbar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background-color: #593ea1; 
+    padding: 10px 20px;
+    color: white;
+}
+
+
+.logo a {
+    font-size: 1.5rem;
+    font-weight: bold;
+    text-decoration: none;
+    color: white;
+}
+
+.searchBox {
+    background-color: rgba(255, 255, 255, 0.1); 
+    border: none;
+    padding: 8px 12px;
+    border-radius: 5px;
+    color: white;
+    font-size: 1rem;
+    width: 200px;
+}
+
+.searchBox::placeholder {
+    color: rgba(255, 255, 255, 0.6);
+}
+
+
+.navLinks {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+
+.username {
+    margin-right: 10px;
+}
+
+
+.loginBtn {
+    background-color: #2d8bba;
+}
+
+.signupBtn {
+    background-color: #2d8bba;
+}
+
+.logoutBtn {
+    background-color: #b89ad3;
+}
+
+.loginBtn, .signupBtn, .logoutBtn {
+    padding: 8px 15px;
+    border-radius: 5px;
+    font-size: 1rem;
+    text-decoration: none;
+    border: none;
+    cursor: pointer;
+    color: white;
+}
+
+.loginBtn:hover, .signupBtn:hover, .logoutBtn:hover {
+    opacity: 0.8;
+}
